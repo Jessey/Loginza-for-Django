@@ -11,21 +11,15 @@
 </head>
 <body>
 
+{% csrf_token %}
 <a href="https://loginza.ru/api/widget?token_url=http://127.0.0.1:8000/" class="loginza">
 	{% csrf_token %}
     <img src="http://loginza.ru/img/sign_in_button_gray.gif" alt="Войти через loginza"/>
 </a>
 
 <script type="text/javascript">
-$(document).ready(function(){
-	$.ajax({
-		url: '/check/',
-		dataType: 'json',
-		success: function (data) {
-			alert(data);
-		}
-	});
-});
+
+
 </script>
 </body>
 </html>

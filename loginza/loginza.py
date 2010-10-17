@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
 
 from django.http import HttpResponse
+import urllib
 import urllib2
+import simplejson
 
 class LoginzaAPI():
     VERSION = '1.0'
@@ -9,6 +11,7 @@ class LoginzaAPI():
     WIDGET_URL = 'https://loginza.ru/api/widget'
     
     def getAuthInfo(self, token):
+        tkn = token
         return self.apiRequert('authinfo', token)
     
     def getWidgetUrl (self, return_url='', provider='', overlay=''):
@@ -48,9 +51,14 @@ class LoginzaAPI():
         return url['sheme'] + '://' + url['host'] + url['request']
         
     def apiRequert(self, method, params):
-        url = self.API_URL + '?' + self.http_build_query(params)
-        
-        responce = urllib2.urlopen(url).read()
+        url = self.API_URL + method + '?token=' + params
+                
+        #responce = urllib2.urlopen(url).read()
+        feed = 'http://twitter.com/statuses/user_timeline/alexilorenz.json';
+        responce = simplejson.loads(urllib2.urlopen(url).read())
+        rsp = responce
+        print rsp
+        return responce
         
         
     
