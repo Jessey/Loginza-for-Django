@@ -7,7 +7,7 @@ from django.conf.urls.defaults import *
 from Test.app.views import *
 
 urlpatterns = patterns('',
-                       ('^$', view),
+                       ('^$', index),
                        ('^check/', check),
     # Example:
     # (r'^Test/', include('Test.foo.urls')),
