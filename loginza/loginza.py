@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 
 from django.http import HttpResponse
-import urllib
 import urllib2
 import simplejson
 
@@ -52,54 +51,4 @@ class LoginzaAPI():
         
     def apiRequert(self, method, params):
         url = self.API_URL + method + '?token=' + params
-                
-        #responce = urllib2.urlopen(url).read()
-        feed = 'http://twitter.com/statuses/user_timeline/alexilorenz.json';
-        responce = simplejson.loads(urllib2.urlopen(url).read())
-        rsp = responce
-        print rsp
-        return responce
-        
-        
-    
-    
-    def http_build_query(self, params, convention="%s"):
-      """
-    
-        This was ripped shamelessly from a PHP forum and ported to Python:
-    
-          http://www.codingforums.com/showthread.php?t=72179
-    
-        Essentially, it's a (hopefully perfect) replica of PHP's
-        http_build_query() that allows you to pass multi-dimensional arrays
-        to a URL via POST or GET.
-    
-      """
-    
-      from urllib import quote
-    
-      if len(params) == 0:
-        return ""
-      else:
-        output = ""
-        for key in params.keys():
-    
-          if type(params[key]) is dict:
-            output = output + self.http_build_query(params[key], convention % (key) + "[%s]")
-    
-          elif type(params[key]) is list:
-    
-            i = 0
-            newparams = {}
-            for element in params[key]:
-              newparams[str(i)] = element
-              i = i + 1
-    
-            output = output + self.http_build_query(newparams, convention % (key) + "[%s]")
-    
-          else:
-            key = quote(key)
-            val = quote(str(params[key]))
-            output = output + convention % (key) + "=" + val + "&"
-    
-      return output
+        return simplejson.loads(urllib2.urlopen(url).read())

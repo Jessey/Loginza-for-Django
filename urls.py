@@ -8,7 +8,6 @@ from Test.app.views import *
 
 urlpatterns = patterns('',
                        ('^$', index),
-                       ('^check/', check),
     # Example:
     # (r'^Test/', include('Test.foo.urls')),
 
